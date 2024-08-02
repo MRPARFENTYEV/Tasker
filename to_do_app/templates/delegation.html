@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delegate Task</title>
+    <style>
+        .user-list, .task-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .user-list th, .task-list th, .user-list td, .task-list td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .user-list th, .task-list th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .user-list .user-name, .task-list .task-description {
+            width: 100%;
+        }
+        .form-section {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Делегирование задач</h1>
+
+    <div>
+        <h2>Список сотрудников</h2>
+        <table class="user-list">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.full_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h2>Список доступных задач</h2>
+        <table class="task-list">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-section">
+        <h2>Делегировать задачу</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="task_id">ID задачи:</label>
+                <input type="text" id="task_id" name="task_id" required>
+            </div>
+            <div>
+                <label for="realizer_id">ID исполнителя:</label>
+                <input type="text" id="realizer_id" name="realizer_id" required>
+            </div>
+            <button type="submit">Делегировать</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function(event){
+                event.preventDefault();
+
+                var task_id = $('#task_id').val();
+                var realizer_id = $('#realizer_id').val();
+
+                $.ajax({
+                    url: '',
+                    type: 'POST',
+                    data: {
+                        task_id: task_id,
+                        realizer_id: realizer_id,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        if(response.success){
+                            alert('Задача успешно делегирована!');
+                            // Обновите страницу или выполните другое действие по желанию
+                        } else {
+                            alert('Ошибка при делегировании задачи.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}
