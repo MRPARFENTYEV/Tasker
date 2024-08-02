@@ -11,9 +11,14 @@ urlpatterns = [
     path('register/', views.user_register, name='user_register'),
     path('login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='user_logout'),
-    # path('main_page/', views.main_page, name='main_page'),
     path('all_tasks/', views.return_tasks, name='return_tasks'),
-    path('', views.home_page, name='home_page')
+    path('', views.home_page, name='home_page'),
+    path('add_task/',views.add_task, name='add_task'),
+    path('del_task/',views.del_task, name='del_task'),
+    path('delegate_task/',views.delegate_task, name='delegate_task'),
+    path('show_delegated/',views.show_delegated, name='show_delegated')
+
+
 
 ]
 # + rout.urls

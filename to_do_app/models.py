@@ -32,9 +32,16 @@ class User(AbstractBaseUser):
 class Tasks(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    is_done = models.BooleanField(default=True)
+    is_done = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name='user_tasks', on_delete=models.CASCADE)
+
+class Delegation(models.Model):
+    owner = models.ForeignKey(User, related_name='owner_tasks', on_delete=models.CASCADE)
+    task_id = models.ForeignKey(Tasks, related_name='tasks', on_delete=models.CASCADE)
+    realizer = models.ForeignKey(User, related_name='realizers', on_delete=models.CASCADE)
+
+
 
 
 

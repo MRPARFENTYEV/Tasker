@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            <h3>удалить задачу</h3>
+            <hr>
+            {{ form }}
+             доступные для удаления
+            {% for task in tasks %}
+            {{ task }}
+            {% endfor %}
+
+
+            <div class="form-group">
+                <button class="btn btn-primary w-100 mt-2" type="submit">удалить задачу</button>
+            </div>
+        </form>
+        <div class="mt-3">
+
+        </div>
+    </div>
+{% endblock %}

@@ -34,8 +34,13 @@
         {% if request.user.is_authenticated %}
         <!-- user profile dropdown -->
         <div class="dropdown text-end">
-          <a href="#" class="btn btn-primary text-white me-4 d-block link-dark text-decoration-none dropdown-toggle"id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">Профиль</a>
+          <a href="#" class="btn btn-primary text-white me-4 d-block link-dark text-decoration-none dropdown-toggle"id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">Задачник</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:home_page' %}">Все задачи</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:add_task' %}">Создать задачу</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:del_task' %}">Удалить задачу</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:delegate_task' %}">Делегировать задачу</a></li>
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:show_delegated' %}">Посмотреть делегации</a></li>
               <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:user_logout' %}">Выйти</a></li>
 
           </ul>

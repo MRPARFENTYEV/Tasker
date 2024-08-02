@@ -1,21 +1,12 @@
-import datetime
-from django.http import HttpResponse, JsonResponse
-
-from django.shortcuts import render
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from django.core.paginator import Paginator
-from .models import User,Tasks
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserLoginForm
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.contrib.sites.shortcuts import get_current_site
-from rest_framework.viewsets import ViewSet, ModelViewSet
-# from .permissions import IsOwnerOrReadOnly
-from to_do_app.serializers import TaskSerializer,UserSerializer
+from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from rest_framework.viewsets import ModelViewSet
+from to_do_app.serializers import TaskSerializer, UserSerializer
+from .forms import UserRegistrationForm, UserLoginForm, AddTaskForm, DelTaskForm, DelegateTaskForm
+from .models import User, Tasks, Delegation
 
 '''Тут можно crud`ить сколько угодно, только в url раскоментировать # + rout.urls'''
 # ___________________________________
@@ -28,7 +19,7 @@ class UserViewSet(ModelViewSet):
     serializer_class=UserSerializer
 
 
-'''А вот тут я делаю как считаю нужным, без фронтенда не обойтись'''
+
 # https://docs.djangoproject.com/en/5.0/topics/pagination/
 def paginat(request, list_objects:list):
 
@@ -51,7 +42,7 @@ def user_register(request):
                 data['email'], data['full_name'], data['password'],
             )
             context = {'notice': 'Перейдите по ссылке'}
-            return redirect('to_do_app:main_page')
+            return redirect('to_do_app:home_page')
 
     else:
         form = UserRegistrationForm()
@@ -89,14 +80,11 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('to_do_app:user_login')
-# def main_page(request):
-#     context = {}
-#     return render(request, 'all_tasks.html', context)
+
 
 def home_page(request):
     user = request.user
     context = {}
-    print(request.user)
     if str(request.user) == 'AnonymousUser':
         return redirect('to_do_app:user_login')
     if request.method == 'POST':
@@ -104,7 +92,6 @@ def home_page(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         is_done = request.POST.get('is_done') == 'true'
-
         task = Tasks.objects.get(id=task_id, user_id=user.id)
         task.title = title
         task.description = description
@@ -121,46 +108,90 @@ def home_page(request):
             if task.is_done == False:
                 context['Выполнено:'] = 'Не выполнено'
             else:context['Выполнено:'] = 'Выполнено'
-        print(context)
+
 
         return render(request, 'home.html', context={'tasks': paginat(request, tasks)})
 def add_task(request):
     user = request.user
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = AddTaskForm(request.POST)
         if form.is_valid():
-            form = UserRegistrationForm(request.POST) # изменить форму
             data = form.cleaned_data
-            print(data)
-            # task = Tasks.objects.create(title=data['title'],
-            #                             description=data['description'],
-            #                             created_at=datetime.datetime.now(),user_id=user.id)
+            task = Tasks.objects.create(title=data['title'],
+                                        description=data['description'],user_id=user.id)
+
+            return redirect('to_do_app:home_page')
+    else:
+        form = AddTaskForm()
+    context = {'form': form}
+    return render(request, 'add_task.html', context)
 
 
-#
-# # Create your views here.
-# def user_login(request):
-#     if request.method == 'POST':
-#         form = UserLoginForm(request.POST)
-#
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             print(data)
-#             user = authenticate(
-#
-#                 request, email=data['email'], password=data['password']
-#             )
-#             print(user)
-#             if user is not None:
-#
-#                 login(request, user)
-#                 return redirect('shop:home_page')
-#             else:
-#                 messages.error(
-#                     request, 'Имя или пароль не верны', 'danger'
-#                 )
-#                 return redirect('accounts:user_login')
-#     else:
-#         form = UserLoginForm()
-#     context = {'title':'Login', 'form': form}
-#     return render(request, 'login.html', context)
+def del_task(request):
+    user = request.user
+    tasks = Tasks.objects.filter(user_id=user.id)
+
+    if request.method == 'POST':
+        form = DelTaskForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                # Удаление задачи по переданному идентификатору
+                task = Tasks.objects.get(id=data['task_id'], user=user)
+                task.delete()
+                return redirect('to_do_app:home_page')
+            except Tasks.DoesNotExist:
+                form.add_error(None, 'Задача не найдена или у вас нет прав на её удаление.')
+
+    else:
+        form = DelTaskForm()
+
+    context = {'form': form, 'tasks': tasks}
+    return render(request, 'del_task.html', context)
+
+def delegate_task(request):
+    context = {}
+    users = User.objects.exclude(id=request.user.id)
+    tasks = Tasks.objects.filter(user_id=request.user.id)
+    context['users'] = users
+    context['tasks'] = tasks
+
+    if request.method == 'POST':
+        form = DelegateTaskForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                task = Tasks.objects.get(id=data['task_id'], user=request.user)
+                realizer = User.objects.get(id=data['realizer_id'])
+                Delegation.objects.create(owner=request.user, task_id=task, realizer=realizer)
+                return redirect('to_do_app:home_page')
+            except (Tasks.DoesNotExist, User.DoesNotExist):
+                form.add_error(None, 'Задача или пользователь не найдены.')
+    else:
+        form = DelegateTaskForm()
+
+    context['form'] = form
+    return render(request, 'delegation.html', context)
+
+
+def show_delegated(request):
+    if request.method == 'POST':
+        task_id = request.POST.get('task_id')
+        is_done = request.POST.get('is_done') == 'true'
+
+        try:
+            task = Tasks.objects.get(id=task_id)
+            task.is_done = is_done
+            task.save()
+            return JsonResponse({'success': True})
+        except Tasks.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'Не найдено'})
+
+    delegations = Delegation.objects.filter(realizer=request.user).select_related('task_id', 'owner')
+    context = {
+        'delegations': delegations
+    }
+    return render(request, 'show_delegated.html', context)
+
+
+
