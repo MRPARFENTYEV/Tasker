@@ -124,6 +124,18 @@ def home_page(request):
         print(context)
 
         return render(request, 'home.html', context={'tasks': paginat(request, tasks)})
+def add_task(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form = UserRegistrationForm(request.POST) # изменить форму
+            data = form.cleaned_data
+            print(data)
+            # task = Tasks.objects.create(title=data['title'],
+            #                             description=data['description'],
+            #                             created_at=datetime.datetime.now(),user_id=user.id)
+
 
 #
 # # Create your views here.

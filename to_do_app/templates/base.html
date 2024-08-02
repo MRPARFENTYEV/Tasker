@@ -20,67 +20,23 @@
 <!--        <p><img src='media/mainpage/m.png' width="30" height="30" alt="Потный айтишник"><figcaption>Потный айтишник:</figcaption></p>-->
 
 
-        <!-- Menu -->
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
 
 
-          <!-- categories dropdown -->
-          <div class="dropdown text-end">
-            <a href="#" class=" mt-2 me-1 ms-1 text-dark d-block link-dark text-decoration-none dropdown-toggle"id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"></a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
-              {% for category in categories %}
-              <!-- check if category is parent -->
-                {% if not category.is_sub %}
-                  <!-- parent -->
-                  <li><a href="{% url 'shop:filter_by_category' category.slug %}" class="dropdown-item text-capitalize bg-light border"><b>{{ category }}</b></a></li>
-                  {% for child in category.sub_categories.all %}
-                   <!-- child -->
-                   <li><a href="{% url 'shop:filter_by_category' child.slug %}" class="dropdown-item">{{ child }}</a></li>
-                  {% endfor %}
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
-
-          <div class="dropdown text-end">
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
-              {% for store in stors %}
-              <!-- check if category is parent -->
-
-                  <!-- parent -->
-                  <li><a href="{% url 'shop:filter_by_store' store.slug %}" class="dropdown-item text-capitalize bg-light border"><b>{{ store }}</b></a></li>
-
-              {% endfor %}
-            </ul>
-          </div>
-
-
-
-        </ul>
-           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <!-- cart icon -->
-        {% if request.user.is_authenticated %}
-        <b class="text-primary">{{ cart_count }}</b>
-        {% endif %}
 
-        <!-- favorite icon -->
-        {% if request.user.is_authenticated %}
-        <b class="text-primary">{{ request.user.get_likes_count}}</b>
-        {% endif %}
 
 
 
         <!-- search form -->
 
-          <input name="q" type="search" class="form-control form-control-dark" placeholder="Поиск..." aria-label="Search">
         </form>
         {% if request.user.is_authenticated %}
         <!-- user profile dropdown -->
         <div class="dropdown text-end">
           <a href="#" class="btn btn-primary text-white me-4 d-block link-dark text-decoration-none dropdown-toggle"id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">Профиль</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item text-danger" href="{% url 'to_do_app:user_logout' %}">Выйти</a></li>
 
           </ul>
         </div>
