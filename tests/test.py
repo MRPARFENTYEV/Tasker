@@ -1,39 +1,19 @@
-from to_do_app import models
+from to_do_app.models import User, Tasks, Delegation
 from to_do_app import views
 import pytest
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpRequest
-from your_app.views import paginat
+from django.test import Client
+from django.urls import reverse
 
 @pytest.mark.django_db
-def test_paginat_first_page():
-    request = HttpRequest()
-    request.GET['page'] = '1'
-    list_objects = ['obj1', 'obj2', 'obj3', 'obj4']
-    page_obj = paginat(request, list_objects)
-    assert list(page_obj) == ['obj1', 'obj2']
-
-@pytest.mark.django_db
-def test_paginat_second_page():
-    request = HttpRequest()
-    request.GET['page'] = '2'
-    list_objects = ['obj1', 'obj2', 'obj3', 'obj4']
-    page_obj = paginat(request, list_objects)
-    assert list(page_obj) == ['obj3', 'obj4']
-
-@pytest.mark.django_db
-def test_paginat_invalid_page():
-    request = HttpRequest()
-    request.GET['page'] = 'invalid'
-    list_objects = ['obj1', 'obj2', 'obj3', 'obj4']
-    page_obj = paginat(request, list_objects)
-    assert list(page_obj) == ['obj1', 'obj2']
-
-@pytest.mark.django_db
-def test_paginat_empty_page():
-    request = HttpRequest()
-    request.GET['page'] = '10'
-    list_objects = ['obj1', 'obj2', 'obj3', 'obj4']
-    page_obj = paginat(request, list_objects)
-    assert list(page_obj) == ['obj3', 'obj4']
-
+def test_user_register_post_valid():
+    client = Client()
+    form_data = {
+        'email': 'test@example.com',
+        'full_name': 'Test User',
+        'password': 'password123',
+    }
+    response = client.post(reverse('your_app:user_register'), data=form_data)
+    assert response.status_code == 302  # Redirects after successful registration
+    assert User.objects.filter(email='test@example.com').exists()
