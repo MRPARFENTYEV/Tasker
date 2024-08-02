@@ -93,28 +93,14 @@ def home_page(request):
     if str(request.user) == 'AnonymousUser':
         return redirect('to_do_app:user_login')
     if request.method == 'POST':
-        task_id = request.POST.get('task_id')
-        title = request.POST.get('title')
-        description = request.POST.get('description')
-        is_done = request.POST.get('is_done') == 'true'
-        task = Tasks.objects.get(id=task_id, user_id=user.id)
-        task.title = title
-        task.description = description
-        task.is_done = is_done
-        user = user.id
-        task.save()
+        task = Tasks.objects.create(title=request.POST.get('title'),description=request.POST.get('description'))
         return JsonResponse({'success': True})
     else:
-        user = request.user
         tasks = Tasks.objects.filter(user_id=user)
         for task in tasks:
             context['Тема:'] = task.title
             context['Описание:'] = task.description
-            if task.is_done == False:
-                context['Выполнено:'] = 'Не выполнено'
-            else:
-                context['Выполнено:'] = 'Выполнено'
-
+            context['Выполнено:'] = task.is_done
         return render(request, 'home.html', context={'tasks': paginat(request, tasks)})
 
 
@@ -160,7 +146,6 @@ def delegate_task(request):
     tasks = Tasks.objects.filter(user_id=request.user.id)
     context['users'] = users
     context['tasks'] = tasks
-
     if request.method == 'POST':
         form = DelegateTaskForm(request.POST)
         if form.is_valid():

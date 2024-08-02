@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="docker re">
+    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="patch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do_app/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do_app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/templates/show_delegated.html" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/templates/show_delegated.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/to_do_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722591174707</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="patch">
+      <option name="closed" value="true" />
+      <created>1722597808552</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597808552</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -214,6 +219,7 @@
     <MESSAGE value="tests lasted but dockerfile is added" />
     <MESSAGE value="requirements.txt are added" />
     <MESSAGE value="docker re" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker re" />
+    <MESSAGE value="patch" />
+    <option name="LAST_COMMIT_MESSAGE" value="patch" />
   </component>
 </project>

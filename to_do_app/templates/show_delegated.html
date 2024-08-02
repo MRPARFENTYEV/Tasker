@@ -47,7 +47,9 @@
                 <td>{{ delegation.task_id.title }}</td>
                 <td>{{ delegation.task_id.description }}</td>
                 <td>
-                    <input type="checkbox" class="task-done" data-task-id="{{ delegation.task_id.id }}" {% if delegation.task_id.is_done %} checked {% endif %} />
+                    <input type="checkbox" class="task-done" data-task-id="{{ delegation.task_id.id }}"
+                           {% if delegation.task_id.is_done %} checked {% endif %} />
+
                 </td>
             </tr>
             {% endfor %}
