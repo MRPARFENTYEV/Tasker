@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="tests lasted but dockerfile is added">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/to_do_app/migrations/0002_alter_user_options_delegation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/to_do_app/migrations/0003_alter_tasks_is_done.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/to_do_app/templates/delegation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/to_do_app/templates/show_delegated.html" afterDir="false" />
+    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="docker re">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,18 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MRPARFENTYEV"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MRPARFENTYEV&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MRPARFENTYEV/Tasker.git",
-    "accountId": "b3b0ecd0-f1f3-4573-91f7-3c77bc262e7f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MRPARFENTYEV/Tasker.git&quot;,
+    &quot;accountId&quot;: &quot;b3b0ecd0-f1f3-4573-91f7-3c77bc262e7f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -50,16 +49,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python tests.Python tests for test.test_paginat_first_page.executor": "Run",
-    "Python tests.Python tests for test.test_user_register_post_valid.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/mrpar/tasker"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Docker.Docker Image.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_paginat_first_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test.test_user_register_post_valid.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mrpar/tasker&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mrpar\tasker" />
@@ -67,6 +68,36 @@
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Python tests for test.test_user_register_post_valid">
+    <configuration name="Docker Image" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="imageTag" value="sha256:1322a0c8563586dd617fe1f31aaff0332281bc24e33a3f6120caa34ac3fc5e7a" />
+          <option name="containerName" value="Tasker_cont" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for test.test_paginat_first_page" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="tasker" />
       <option name="ENV_FILES" value="" />
@@ -100,6 +131,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests for test.test_user_register_post_valid" />
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="Docker.Docker Image" />
         <item itemvalue="Python tests.Python tests for test.test_paginat_first_page" />
       </list>
     </recent_temporary>
@@ -152,7 +185,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722587086629</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="requirements.txt are added">
+      <option name="closed" value="true" />
+      <created>1722588672078</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722588672078</updated>
+    </task>
+    <task id="LOCAL-00006" summary="docker re">
+      <option name="closed" value="true" />
+      <created>1722591174707</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722591174707</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -163,6 +212,8 @@
     <MESSAGE value="Sec Commit" />
     <MESSAGE value="tests lasted" />
     <MESSAGE value="tests lasted but dockerfile is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="tests lasted but dockerfile is added" />
+    <MESSAGE value="requirements.txt are added" />
+    <MESSAGE value="docker re" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker re" />
   </component>
 </project>

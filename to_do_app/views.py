@@ -9,20 +9,21 @@ from .forms import UserRegistrationForm, UserLoginForm, AddTaskForm, DelTaskForm
 from .models import User, Tasks, Delegation
 
 '''Тут можно crud`ить сколько угодно, только в url раскоментировать # + rout.urls'''
+
+
 # ___________________________________
 class TaskViewSet(ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TaskSerializer
 
+
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    serializer_class=UserSerializer
-
+    serializer_class = UserSerializer
 
 
 # https://docs.djangoproject.com/en/5.0/topics/pagination/
-def paginat(request, list_objects:list):
-
+def paginat(request, list_objects: list):
     p = Paginator(list_objects, 2)
     page_number = request.GET.get('page')
     try:
@@ -32,6 +33,7 @@ def paginat(request, list_objects:list):
     except EmptyPage:
         page_obj = p.page(p.num_pages)
     return page_obj
+
 
 def user_register(request):
     if request.method == 'POST':
@@ -46,14 +48,16 @@ def user_register(request):
 
     else:
         form = UserRegistrationForm()
-    context = {'title':'Signup', 'form':form}
+    context = {'title': 'Signup', 'form': form}
     return render(request, 'register.html', context)
+
 
 def return_tasks(request):
     user = request.user
     tasks = Tasks.objects.filter(user=user)
-    context ={'tasks':tasks}
+    context = {'tasks': tasks}
     return render(request, 'all_tasks.html', context)
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -76,6 +80,7 @@ def user_login(request):
         form = UserLoginForm()
     context = {'title': 'Login', 'form': form}
     return render(request, 'login.html', context)
+
 
 def user_logout(request):
     logout(request)
@@ -107,10 +112,12 @@ def home_page(request):
             context['Описание:'] = task.description
             if task.is_done == False:
                 context['Выполнено:'] = 'Не выполнено'
-            else:context['Выполнено:'] = 'Выполнено'
-
+            else:
+                context['Выполнено:'] = 'Выполнено'
 
         return render(request, 'home.html', context={'tasks': paginat(request, tasks)})
+
+
 def add_task(request):
     user = request.user
     if request.method == 'POST':
@@ -118,8 +125,7 @@ def add_task(request):
         if form.is_valid():
             data = form.cleaned_data
             task = Tasks.objects.create(title=data['title'],
-                                        description=data['description'],user_id=user.id)
-
+                                        description=data['description'], user_id=user.id)
             return redirect('to_do_app:home_page')
     else:
         form = AddTaskForm()
@@ -142,12 +148,11 @@ def del_task(request):
                 return redirect('to_do_app:home_page')
             except Tasks.DoesNotExist:
                 form.add_error(None, 'Задача не найдена или у вас нет прав на её удаление.')
-
     else:
         form = DelTaskForm()
-
     context = {'form': form, 'tasks': tasks}
     return render(request, 'del_task.html', context)
+
 
 def delegate_task(request):
     context = {}
@@ -169,7 +174,6 @@ def delegate_task(request):
                 form.add_error(None, 'Задача или пользователь не найдены.')
     else:
         form = DelegateTaskForm()
-
     context['form'] = form
     return render(request, 'delegation.html', context)
 
@@ -178,7 +182,6 @@ def show_delegated(request):
     if request.method == 'POST':
         task_id = request.POST.get('task_id')
         is_done = request.POST.get('is_done') == 'true'
-
         try:
             task = Tasks.objects.get(id=task_id)
             task.is_done = is_done
@@ -192,6 +195,3 @@ def show_delegated(request):
         'delegations': delegations
     }
     return render(request, 'show_delegated.html', context)
-
-
-

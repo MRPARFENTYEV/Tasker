@@ -14,6 +14,12 @@ def test_user_register_post_valid():
         'full_name': 'Test User',
         'password': 'password123',
     }
-    response = client.post(reverse('your_app:user_register'), data=form_data)
+    response = client.post(reverse('to_do_app:user_register'), data=form_data)
     assert response.status_code == 302  # Redirects after successful registration
     assert User.objects.filter(email='test@example.com').exists()
+
+@pytest.mark.django_db
+def test_user_register_post_valid():
+    client = Client()
+    response = client.get('login/')
+    assert response.status_code == 200  # Redirects after successful registration

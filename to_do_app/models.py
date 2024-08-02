@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
 class UserManager(BaseUserManager):
@@ -13,13 +13,15 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self.db)
         return user
+
+
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=100, unique=True)
     full_name = models.CharField(max_length=100)
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
-    search_fields =['full_name']
+    search_fields = ['full_name']
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -36,15 +38,8 @@ class Tasks(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name='user_tasks', on_delete=models.CASCADE)
 
+
 class Delegation(models.Model):
     owner = models.ForeignKey(User, related_name='owner_tasks', on_delete=models.CASCADE)
     task_id = models.ForeignKey(Tasks, related_name='tasks', on_delete=models.CASCADE)
     realizer = models.ForeignKey(User, related_name='realizers', on_delete=models.CASCADE)
-
-
-
-
-
-
-
-
