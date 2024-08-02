@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+    <style>
+        .task-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .task-list th, .task-list td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .task-list th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .task-list .task-description {
+            width: 100%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <table class="task-list">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>
+                    <input type="text" class="task-title" data-task-id="{{ task.id }}" value="{{ task.title }}" />
+                </td>
+                <td>
+                    <input type="text" class="task-description" data-task-id="{{ task.id }}" value="{{ task.description }}" />
+                </td>
+                <td>
+                    <input type="checkbox" class="task-done" data-task-id="{{ task.id }}" {% if task.is_done %} checked {% endif %} /> Выполнено
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <ul class="pagination">
+            {% if tasks.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ tasks.previous_page_number }}">Предыдущая</a></li>
+            {% endif %}
+
+            {% if tasks.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ tasks.previous_page_number }}">{{ tasks.previous_page_number }}</a></li>
+            {% endif %}
+
+            <li class="page-item active"><a class="page-link" href="#">{{ tasks.number }}</a></li>
+
+            {% if tasks.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ tasks.next_page_number }}">{{ tasks.next_page_number }}</a></li>
+            {% endif %}
+
+            {% if tasks.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ tasks.next_page_number }}">Следующая</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.task-title, .task-description, .task-done').change(function(){
+                var task_id = $(this).data('task-id');
+                var title = $(this).closest('tr').find('.task-title').val();
+                var description = $(this).closest('tr').find('.task-description').val();
+                var is_done = $(this).closest('tr').find('.task-done').is(':checked');
+
+                $.ajax({
+                    url: '',
+                    type: 'POST',
+                    data: {
+                        task_id: task_id,
+                        title: title,
+                        description: description,
+                        is_done: is_done,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        if(response.success){
+                            alert('Задача обновлена!');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+{% endblock %}
+<!--  <div class="card me-2 mb-2" style="width: 16rem;">-->
+<!--    <img style="object-fit: cover;" class="card-img mt-2" width="260" height="250" src='{{user_info.image}}'>-->
+<!--    <div class="mt-3 text-center">-->
+<!--      <a href="{{ user_info.get_absolute_url}}" class="mb-3 btn btn-outline-primary w-100">{{user_info.full_name}}</a>-->
+<!--    </div>-->
+<!--  </div>-->
