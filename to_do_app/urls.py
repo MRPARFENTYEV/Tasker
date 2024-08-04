@@ -4,9 +4,9 @@ from rest_framework.routers import DefaultRouter
 
 app_name = 'to_do_app'
 
-rout = DefaultRouter()
-rout.register('tasks', views.TaskViewSet)
-rout.register('users', views.UserViewSet)
+# rout = DefaultRouter()
+# rout.register('tasks', views.TaskViewSet)
+# rout.register('users', views.UserViewSet)
 urlpatterns = [
     path('register/', views.user_register, name='user_register'),
     path('login/', views.user_login, name='user_login'),

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.viewsets import ModelViewSet
 from to_do_app.serializers import TaskSerializer, UserSerializer
 from .forms import UserRegistrationForm, UserLoginForm, AddTaskForm, DelTaskForm, DelegateTaskForm
@@ -69,13 +70,8 @@ def user_login(request):
             )
             if user is not None:
                 login(request, user)
-
                 return redirect('to_do_app:home_page')
-            else:
-                messages.error(
-                    request, 'Имя или пароль неверны', 'danger'
-                )
-                return redirect('to_do_app:user_login')
+
     else:
         form = UserLoginForm()
     context = {'title': 'Login', 'form': form}
@@ -84,6 +80,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
+    print('request',request)
     return redirect('to_do_app:user_login')
 
 

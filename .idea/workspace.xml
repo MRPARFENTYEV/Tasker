@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="patch">
+    <list default="true" id="c9b06ed6-0ff8-4962-a5b7-36bdfc612cf3" name="Changes" comment="home_page is reducted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do_app/templates/show_delegated.html" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/templates/show_delegated.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/to_do_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/to_do_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,43 +48,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Docker.Docker Image.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_paginat_first_page.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test.test_user_register_post_valid.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mrpar/tasker&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.Docker Image.executor": "Run",
+    "Docker.Dockerfile.executor": "Run",
+    "Python tests.Python tests for test.test_home_page.executor": "Run",
+    "Python tests.Python tests for test.test_paginat_first_page.executor": "Run",
+    "Python tests.Python tests for test.test_user_login.executor": "Run",
+    "Python tests.Python tests for test.test_user_login.test_user_logout.executor": "Run",
+    "Python tests.Python tests for test.test_user_logout.executor": "Run",
+    "Python tests.Python tests for test.test_user_register_get.executor": "Run",
+    "Python tests.Python tests for test.test_user_register_post_valid.executor": "Run",
+    "Python tests.Python tests in test.py.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/mrpar/tasker"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mrpar\tasker" />
       <recent name="C:\Users\mrpar\tasker\to_do_app\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test.test_user_register_post_valid">
-    <configuration name="Docker Image" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
-      <deployment type="docker-image">
-        <settings>
-          <option name="imageTag" value="sha256:1322a0c8563586dd617fe1f31aaff0332281bc24e33a3f6120caa34ac3fc5e7a" />
-          <option name="containerName" value="Tasker_cont" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests for test.test_home_page">
     <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
       <deployment type="docker-image">
         <settings />
@@ -95,7 +86,7 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test.test_paginat_first_page" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test.test_home_page" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="tasker" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,11 +97,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_paginat_first_page&quot;" />
+      <option name="_new_target" value="&quot;test.test_home_page&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test.test_user_register_post_valid" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test.test_user_login" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="tasker" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,16 +112,62 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_user_register_post_valid&quot;" />
+      <option name="_new_target" value="&quot;test.test_user_login&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_user_login.test_user_logout" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="tasker" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_user_login.test_user_logout&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test.test_user_logout" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="tasker" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test.test_user_logout&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="tasker" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test.test_user_register_post_valid" />
-        <item itemvalue="Docker.Dockerfile" />
-        <item itemvalue="Docker.Docker Image" />
-        <item itemvalue="Python tests.Python tests for test.test_paginat_first_page" />
+        <item itemvalue="Python tests.Python tests for test.test_home_page" />
+        <item itemvalue="Python tests.Python tests for test.test_user_logout" />
+        <item itemvalue="Python tests.Python tests for test.test_user_login.test_user_logout" />
+        <item itemvalue="Python tests.Python tests for test.test_user_login" />
+        <item itemvalue="Python tests.Python tests in test.py" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722597808552</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="home_page is reducted">
+      <option name="closed" value="true" />
+      <created>1722599927557</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722599927557</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -220,6 +265,7 @@
     <MESSAGE value="requirements.txt are added" />
     <MESSAGE value="docker re" />
     <MESSAGE value="patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="patch" />
+    <MESSAGE value="home_page is reducted" />
+    <option name="LAST_COMMIT_MESSAGE" value="home_page is reducted" />
   </component>
 </project>
