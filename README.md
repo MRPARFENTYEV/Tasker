@@ -12,3 +12,10 @@
 - **Язык программирования**: Python (3.12)
 - **Фреймворк**: Django
 - **База данных**: PostgreSQL
+### Установка
+- **build image for dockerfile, через интерфейс
+- **должен появиться следующий результат :Successfully built номер типа(297dfaa1d1b2)
+                                          Successfully tagged image:latest
+                                          image Dockerfile: Dockerfile' has been deployed successfully.
+- **прописать: docker run --name some_container -p 8800:8999 image:latest
+#RUN python manage.py migrate
